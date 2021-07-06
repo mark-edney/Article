@@ -1,0 +1,35 @@
+---
+title: "Article Plotting Notebook"
+output: html_notebook
+---
+
+This Notebook ooutlines the code required to create the plot of different samples
+of nutrients tested in water around the world. This plot will be used in an article
+that will hopefully be published in the Canadian Journal of Chemical Engineering. 
+
+The following code is used to install the required libraries. 
+```{r, Initial}
+library(tidyverse)
+library(dataRetrieval)
+library(ggmap)
+library(maps)
+library(mapdata)
+library(mapsapi)
+```
+
+This next chunk of code is uses the readWQPdata function from the datRetriveal package
+to download data from the Water Quality Portal. The Water Quality Portal is a collection
+of three datasets of water quality sampling across the globe. 
+
+The parameters are passed to the function to define the scope for the data to collection,
+for this instance it limits the window for when the sample was first collected and
+limits the database to solely the concentration of total Phosphorus.
+
+```{r, dataget}
+wqp.data <- readWQPdata('startDateLo' = "2016-01-01", 
+                        'startDateHi' = "2016-12-31", 
+                        characteristicName=c("Phosphorus")) %>%
+        filter(ResultSampleFractionText=="Total")
+```
+
+
