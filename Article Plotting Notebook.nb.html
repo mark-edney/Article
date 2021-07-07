@@ -46,6 +46,15 @@ if (!!window.navigator.userAgent.match("MSIE 8")) {
 !function(a){"use strict";a.matchMedia=a.matchMedia||function(a){var b,c=a.documentElement,d=c.firstElementChild||c.firstChild,e=a.createElement("body"),f=a.createElement("div");return f.id="mq-test-1",f.style.cssText="position:absolute;top:-100em",e.style.background="none",e.appendChild(f),function(a){return f.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',c.insertBefore(e,d),b=42===f.offsetWidth,c.removeChild(e),{matches:b,media:a}}}(a.document)}(this),function(a){"use strict";function b(){u(!0)}var c={};a.respond=c,c.update=function(){};var d=[],e=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}(),f=function(a,b){var c=e();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))};if(c.ajax=f,c.queue=d,c.regex={media:/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi,keyframes:/@(?:\-(?:o|moz|webkit)\-)?keyframes[^\{]+\{(?:[^\{\}]*\{[^\}\{]*\})+[^\}]*\}/gi,urls:/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,findStyles:/@media *([^\{]+)\{([\S\s]+?)$/,only:/(only\s+)?([a-zA-Z]+)\s?/,minw:/\([\s]*min\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/,maxw:/\([\s]*max\-width\s*:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/},c.mediaQueriesSupported=a.matchMedia&&null!==a.matchMedia("only all")&&a.matchMedia("only all").matches,!c.mediaQueriesSupported){var g,h,i,j=a.document,k=j.documentElement,l=[],m=[],n=[],o={},p=30,q=j.getElementsByTagName("head")[0]||k,r=j.getElementsByTagName("base")[0],s=q.getElementsByTagName("link"),t=function(){var a,b=j.createElement("div"),c=j.body,d=k.style.fontSize,e=c&&c.style.fontSize,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",c||(c=f=j.createElement("body"),c.style.background="none"),k.style.fontSize="100%",c.style.fontSize="100%",c.appendChild(b),f&&k.insertBefore(c,k.firstChild),a=b.offsetWidth,f?k.removeChild(c):c.removeChild(b),k.style.fontSize=d,e&&(c.style.fontSize=e),a=i=parseFloat(a)},u=function(b){var c="clientWidth",d=k[c],e="CSS1Compat"===j.compatMode&&d||j.body[c]||d,f={},o=s[s.length-1],r=(new Date).getTime();if(b&&g&&p>r-g)return a.clearTimeout(h),h=a.setTimeout(u,p),void 0;g=r;for(var v in l)if(l.hasOwnProperty(v)){var w=l[v],x=w.minw,y=w.maxw,z=null===x,A=null===y,B="em";x&&(x=parseFloat(x)*(x.indexOf(B)>-1?i||t():1)),y&&(y=parseFloat(y)*(y.indexOf(B)>-1?i||t():1)),w.hasquery&&(z&&A||!(z||e>=x)||!(A||y>=e))||(f[w.media]||(f[w.media]=[]),f[w.media].push(m[w.rules]))}for(var C in n)n.hasOwnProperty(C)&&n[C]&&n[C].parentNode===q&&q.removeChild(n[C]);n.length=0;for(var D in f)if(f.hasOwnProperty(D)){var E=j.createElement("style"),F=f[D].join("\n");E.type="text/css",E.media=D,q.insertBefore(E,o.nextSibling),E.styleSheet?E.styleSheet.cssText=F:E.appendChild(j.createTextNode(F)),n.push(E)}},v=function(a,b,d){var e=a.replace(c.regex.keyframes,"").match(c.regex.media),f=e&&e.length||0;b=b.substring(0,b.lastIndexOf("/"));var g=function(a){return a.replace(c.regex.urls,"$1"+b+"$2$3")},h=!f&&d;b.length&&(b+="/"),h&&(f=1);for(var i=0;f>i;i++){var j,k,n,o;h?(j=d,m.push(g(a))):(j=e[i].match(c.regex.findStyles)&&RegExp.$1,m.push(RegExp.$2&&g(RegExp.$2))),n=j.split(","),o=n.length;for(var p=0;o>p;p++)k=n[p],l.push({media:k.split("(")[0].match(c.regex.only)&&RegExp.$2||"all",rules:m.length-1,hasquery:k.indexOf("(")>-1,minw:k.match(c.regex.minw)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:k.match(c.regex.maxw)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}u()},w=function(){if(d.length){var b=d.shift();f(b.href,function(c){v(c,b.href,b.media),o[b.href]=!0,a.setTimeout(function(){w()},0)})}},x=function(){for(var b=0;b<s.length;b++){var c=s[b],e=c.href,f=c.media,g=c.rel&&"stylesheet"===c.rel.toLowerCase();e&&g&&!o[e]&&(c.styleSheet&&c.styleSheet.rawCssText?(v(c.styleSheet.rawCssText,e,f),o[e]=!0):(!/^([a-zA-Z:]*\/\/)/.test(e)&&!r||e.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&("//"===e.substring(0,2)&&(e=a.location.protocol+e),d.push({href:e,media:f})))}w()};x(),c.update=x,c.getEmValue=t,a.addEventListener?a.addEventListener("resize",b,!1):a.attachEvent&&a.attachEvent("onresize",b)}}(this);
 };
 </script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <style type="text/css">.pagedtable {
 overflow: auto;
 padding-left: 8px;
@@ -1484,7 +1493,6 @@ window.initializeCodeFolding = function(show) {
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
     var showThis = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
-    if (showThis) div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1492,7 +1500,7 @@ window.initializeCodeFolding = function(show) {
 
     // add a show code button right above
     var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
-    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
     showCodeButton.append(showCodeText);
     showCodeButton
         .attr('data-toggle', 'collapse')
@@ -1508,13 +1516,27 @@ window.initializeCodeFolding = function(show) {
 
     div.before(buttonRow);
 
+    // show the div if necessary
+    if (showThis) div.collapse('show');
+
     // update state of button on show/hide
-    div.on('hidden.bs.collapse', function () {
+    //   * Change text
+    //   * add a class for intermediate states styling
+    div.on('hide.bs.collapse', function () {
       showCodeText.text('Code');
+      showCodeButton.addClass('btn-collapsing');
+    });
+    div.on('hidden.bs.collapse', function () {
+      showCodeButton.removeClass('btn-collapsing');
     });
     div.on('show.bs.collapse', function () {
       showCodeText.text('Hide');
+      showCodeButton.addClass('btn-expanding');
     });
+    div.on('shown.bs.collapse', function () {
+      showCodeButton.removeClass('btn-expanding');
+    });
+
   });
 
 }
@@ -1560,11 +1582,6 @@ color: rgb(3, 106, 7);
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -1578,30 +1595,6 @@ if (window.hljs) {
 
 
 <style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
 #rmd-source-code {
   display: none;
 }
@@ -1617,10 +1610,6 @@ h6 {
   margin-left: auto;
   margin-right: auto;
 }
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
 img {
   max-width:100%;
 }
@@ -1635,6 +1624,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+pre code {
+  padding: 0;
 }
 </style>
 
@@ -1672,7 +1664,6 @@ summary {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -1739,11 +1730,11 @@ summary {
 
 
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 <li role="separator" class="divider"></li>
@@ -1759,35 +1750,162 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<p>This Notebook ooutlines the code required to create the plot of different samples of nutrients tested in water around the world. This plot will be used in an article that will hopefully be published in the Canadian Journal of Chemical Engineering.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This Notebook outlines the code required to create the plot of different samples of nutrients tested in water around the world. This plot will be used in an article that will hopefully be published in the Canadian Journal of Chemical Engineering.</p>
 <p>The following code is used to install the required libraries.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGRhdGFSZXRyaWV2YWwpXG5saWJyYXJ5KGdnbWFwKVxubGlicmFyeShtYXBzKVxubGlicmFyeShtYXBkYXRhKVxubGlicmFyeShtYXBzYXBpKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGRhdGFSZXRyaWV2YWwpXG5saWJyYXJ5KGdnbWFwKVxubGlicmFyeShtYXBzKVxubGlicmFyeShtYXBkYXRhKVxubGlicmFyeShSQ29sb3JCcmV3ZXIpXG5saWJyYXJ5KGx1YnJpZGF0ZSlcbmBgYCJ9 -->
 <pre class="r"><code>library(tidyverse)
 library(dataRetrieval)
 library(ggmap)
 library(maps)
 library(mapdata)
-library(mapsapi)</code></pre>
+library(RColorBrewer)
+library(lubridate)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>This next chunk of code is uses the readWQPdata function from the datRetriveal package to download data from the Water Quality Portal. The Water Quality Portal is a collection of three datasets of water quality sampling across the globe.</p>
+</div>
+<div id="usa-dataset" class="section level2">
+<h2>USA dataset</h2>
+<p>This next chunk of code is uses the readWQPdata function from the dataRetriveal package to download data from the Water Quality Portal. The Water Quality Portal is a collection of three datasets of water quality sampling across the globe.</p>
 <p>The parameters are passed to the function to define the scope for the data to collection, for this instance it limits the window for when the sample was first collected and limits the database to solely the concentration of total Phosphorus.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3FwLmRhdGEgPC0gcmVhZFdRUGRhdGEoJ3N0YXJ0RGF0ZUxvJyA9IFwiMjAxNi0wMS0wMVwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICdzdGFydERhdGVIaScgPSBcIjIwMTYtMTItMzFcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICBjaGFyYWN0ZXJpc3RpY05hbWU9YyhcIlBob3NwaG9ydXNcIikpICU+JVxuICAgICAgICBmaWx0ZXIoUmVzdWx0U2FtcGxlRnJhY3Rpb25UZXh0PT1cIlRvdGFsXCIpXG5gYGAifQ== -->
-<pre class="r"><code>wqp.data &lt;- readWQPdata(&#39;startDateLo&#39; = &quot;2016-01-01&quot;, 
-                        &#39;startDateHi&#39; = &quot;2016-12-31&quot;, 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3FwLmRhdGEgPC0gcmVhZFdRUGRhdGEoJ3N0YXJ0RGF0ZUxvJyA9IFwiMjAxNy0wMS0wMVwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICdzdGFydERhdGVIaScgPSBcIjIwMTgtMTItMzFcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICBjaGFyYWN0ZXJpc3RpY05hbWU9YyhcIlBob3NwaG9ydXNcIikpICU+JVxuICAgICAgICBmaWx0ZXIoUmVzdWx0U2FtcGxlRnJhY3Rpb25UZXh0PT1cIlRvdGFsXCIpICU+JVxuICAgICAgICBtdXRhdGUoUmVzdWx0ID0gYXMubnVtZXJpYyhSZXN1bHRNZWFzdXJlVmFsdWUpKSAlPiVcbiAgICAgICAgZmlsdGVyKCFpcy5uYShSZXN1bHQpLFxuICAgICAgICAgICAgICAgQWN0aXZpdHlNZWRpYU5hbWU9PVwiV2F0ZXJcIilcbmBgYCJ9 -->
+<pre class="r"><code>wqp.data &lt;- readWQPdata(&#39;startDateLo&#39; = &quot;2017-01-01&quot;, 
+                        &#39;startDateHi&#39; = &quot;2018-12-31&quot;, 
                         characteristicName=c(&quot;Phosphorus&quot;)) %&gt;%
-        filter(ResultSampleFractionText==&quot;Total&quot;)</code></pre>
+        filter(ResultSampleFractionText==&quot;Total&quot;) %&gt;%
+        mutate(Result = as.numeric(ResultMeasureValue)) %&gt;%
+        filter(!is.na(Result),
+               ActivityMediaName==&quot;Water&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>The USA dataset come from a wide arrange of sampling stations, 26400 stations in total. These different stations measure different units on concentration so the data needs to be cleaned and the units converted to mg/L.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ2FzZTEgPC0gd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PVwidWcvbFwifCB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09XCJ1Z1wiXG5DYXNlMiA8LSB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09XCJwcG1cInwgd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PVwibWcvbCBhcyBQXCJcbkNhc2UzIDwtIHdxcC5kYXRhJFJlc3VsdE1lYXN1cmUuTWVhc3VyZVVuaXRDb2RlPT1cInBwYlwiXG5DYXNlNCA8LSB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09XCJtZy9rZ1wiXG5DYXNlNSA8LSB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09XCIlXCJcblxud3FwLmRhdGEkUmVzdWx0W0Nhc2UxfENhc2UzXSA8LSB3cXAuZGF0YSRSZXN1bHRbQ2FzZTF8Q2FzZTNdLzEwMDBcbndxcC5kYXRhJFJlc3VsdFtDYXNlNV0gPC0gd3FwLmRhdGEkUmVzdWx0W0Nhc2U1XSoxMFxuXG53cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZVtDYXNlMXxDYXNlMnxDYXNlM3xDYXNlNHxDYXNlNV0gPC0gXCJtZy9sXCJcbndxcC5kYXRhIDwtIHdxcC5kYXRhICU+JSBcbiAgICAgICAgZmlsdGVyKFJlc3VsdE1lYXN1cmUuTWVhc3VyZVVuaXRDb2RlPT1cIm1nL2xcIikgJT4lXG4gICAgICAgIGZpbHRlcihSZXN1bHQgPiAwKVxuYGBgIn0= -->
+<pre class="r"><code>Case1 &lt;- wqp.data$ResultMeasure.MeasureUnitCode==&quot;ug/l&quot;| wqp.data$ResultMeasure.MeasureUnitCode==&quot;ug&quot;
+Case2 &lt;- wqp.data$ResultMeasure.MeasureUnitCode==&quot;ppm&quot;| wqp.data$ResultMeasure.MeasureUnitCode==&quot;mg/l as P&quot;
+Case3 &lt;- wqp.data$ResultMeasure.MeasureUnitCode==&quot;ppb&quot;
+Case4 &lt;- wqp.data$ResultMeasure.MeasureUnitCode==&quot;mg/kg&quot;
+Case5 &lt;- wqp.data$ResultMeasure.MeasureUnitCode==&quot;%&quot;
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFydGljbGUgUGxvdHRpbmcgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIE5vdGVib29rIG9vdXRsaW5lcyB0aGUgY29kZSByZXF1aXJlZCB0byBjcmVhdGUgdGhlIHBsb3Qgb2YgZGlmZmVyZW50IHNhbXBsZXMNCm9mIG51dHJpZW50cyB0ZXN0ZWQgaW4gd2F0ZXIgYXJvdW5kIHRoZSB3b3JsZC4gVGhpcyBwbG90IHdpbGwgYmUgdXNlZCBpbiBhbiBhcnRpY2xlDQp0aGF0IHdpbGwgaG9wZWZ1bGx5IGJlIHB1Ymxpc2hlZCBpbiB0aGUgQ2FuYWRpYW4gSm91cm5hbCBvZiBDaGVtaWNhbCBFbmdpbmVlcmluZy4gDQoNClRoZSBmb2xsb3dpbmcgY29kZSBpcyB1c2VkIHRvIGluc3RhbGwgdGhlIHJlcXVpcmVkIGxpYnJhcmllcy4gDQpgYGB7ciwgSW5pdGlhbH0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShkYXRhUmV0cmlldmFsKQ0KbGlicmFyeShnZ21hcCkNCmxpYnJhcnkobWFwcykNCmxpYnJhcnkobWFwZGF0YSkNCmxpYnJhcnkobWFwc2FwaSkNCmBgYA0KDQpUaGlzIG5leHQgY2h1bmsgb2YgY29kZSBpcyB1c2VzIHRoZSByZWFkV1FQZGF0YSBmdW5jdGlvbiBmcm9tIHRoZSBkYXRSZXRyaXZlYWwgcGFja2FnZQ0KdG8gZG93bmxvYWQgZGF0YSBmcm9tIHRoZSBXYXRlciBRdWFsaXR5IFBvcnRhbC4gVGhlIFdhdGVyIFF1YWxpdHkgUG9ydGFsIGlzIGEgY29sbGVjdGlvbg0Kb2YgdGhyZWUgZGF0YXNldHMgb2Ygd2F0ZXIgcXVhbGl0eSBzYW1wbGluZyBhY3Jvc3MgdGhlIGdsb2JlLiANCg0KVGhlIHBhcmFtZXRlcnMgYXJlIHBhc3NlZCB0byB0aGUgZnVuY3Rpb24gdG8gZGVmaW5lIHRoZSBzY29wZSBmb3IgdGhlIGRhdGEgdG8gY29sbGVjdGlvbiwNCmZvciB0aGlzIGluc3RhbmNlIGl0IGxpbWl0cyB0aGUgd2luZG93IGZvciB3aGVuIHRoZSBzYW1wbGUgd2FzIGZpcnN0IGNvbGxlY3RlZCBhbmQNCmxpbWl0cyB0aGUgZGF0YWJhc2UgdG8gc29sZWx5IHRoZSBjb25jZW50cmF0aW9uIG9mIHRvdGFsIFBob3NwaG9ydXMuDQoNCmBgYHtyLCBkYXRhZ2V0fQ0Kd3FwLmRhdGEgPC0gcmVhZFdRUGRhdGEoJ3N0YXJ0RGF0ZUxvJyA9ICIyMDE2LTAxLTAxIiwgDQogICAgICAgICAgICAgICAgICAgICAgICAnc3RhcnREYXRlSGknID0gIjIwMTYtMTItMzEiLCANCiAgICAgICAgICAgICAgICAgICAgICAgIGNoYXJhY3RlcmlzdGljTmFtZT1jKCJQaG9zcGhvcnVzIikpICU+JQ0KICAgICAgICBmaWx0ZXIoUmVzdWx0U2FtcGxlRnJhY3Rpb25UZXh0PT0iVG90YWwiKQ0KYGBgDQoNCg0K</div>
+wqp.data$Result[Case1|Case3] &lt;- wqp.data$Result[Case1|Case3]/1000
+wqp.data$Result[Case5] &lt;- wqp.data$Result[Case5]*10
+
+wqp.data$ResultMeasure.MeasureUnitCode[Case1|Case2|Case3|Case4|Case5] &lt;- &quot;mg/l&quot;
+wqp.data &lt;- wqp.data %&gt;% 
+        filter(ResultMeasure.MeasureUnitCode==&quot;mg/l&quot;) %&gt;%
+        filter(Result &gt; 0)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The data comes from the years 2017-2018 so there are multiple measurements from the same stations. The average value is obtained and all extra unnecessary attributes are dropped.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3FwLmRhdGEgPC0gd3FwLmRhdGEgJT4lXG4gICAgICAgIHNlbGVjdChNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyLCBDaGFyYWN0ZXJpc3RpY05hbWUsIFJlc3VsdCkgJT4lXG4gICAgICAgIGdyb3VwX2J5KE1vbml0b3JpbmdMb2NhdGlvbklkZW50aWZpZXIsIENoYXJhY3RlcmlzdGljTmFtZSkgJT4lXG4gICAgICAgIHN1bW1hcmlzZShSZXN1bHQgPSBtZWFuKFJlc3VsdCksIC5ncm91cHMgPSBcImtlZXBcIilcbmBgYCJ9 -->
+<pre class="r"><code>wqp.data &lt;- wqp.data %&gt;%
+        select(MonitoringLocationIdentifier, CharacteristicName, Result) %&gt;%
+        group_by(MonitoringLocationIdentifier, CharacteristicName) %&gt;%
+        summarise(Result = mean(Result), .groups = &quot;keep&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>All of the geo-spacial data for the USA testing location are kept in a separate database so the left merge is used to add longitude and latitude data.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3FwLnNpdGUgPC0gd2hhdFdRUHNpdGVzKHNpdGVpZD13cXAuZGF0YSRNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyKSAlPiVcbiAgICAgICAgc2VsZWN0KE1vbml0b3JpbmdMb2NhdGlvbklkZW50aWZpZXIsIGxuZyA9IExvbmdpdHVkZU1lYXN1cmUsXG4gICAgICAgICAgICAgICBsYXQgPSBMYXRpdHVkZU1lYXN1cmUpXG5VU0EgPC0gd3FwLmRhdGEgJT4lIFxuICAgICAgICBsZWZ0X2pvaW4od3FwLnNpdGUsIGJ5ID0gXCJNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyXCIpICU+JVxuICAgICAgICBhcnJhbmdlKFJlc3VsdClcbmBgYCJ9 -->
+<pre class="r"><code>wqp.site &lt;- whatWQPsites(siteid=wqp.data$MonitoringLocationIdentifier) %&gt;%
+        select(MonitoringLocationIdentifier, lng = LongitudeMeasure,
+               lat = LatitudeMeasure)
+USA &lt;- wqp.data %&gt;% 
+        left_join(wqp.site, by = &quot;MonitoringLocationIdentifier&quot;) %&gt;%
+        arrange(Result)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="canada-dataset" class="section level2">
+<h2>Canada dataset</h2>
+<p>The Canadian dataset is much easier to handle and can be simply downloaded from the canadian open data website. There is a limitation to the data in that the last updated data is from 2018. This will be the limitation for all the data as all other datasets are more recent.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FudXJsIDwtIFwiaHR0cHM6Ly93d3cuY2FuYWRhLmNhL2NvbnRlbnQvZGFtL2VjY2MvZG9jdW1lbnRzL2Nzdi9jZXNpbmRpY2F0b3JzL3dhdGVyLXF1YWxpdHktY2FuYWRpYW4tcml2ZXJzLzIwMjAvd3FpLWZlZGVyYWwtcmF3LWRhdGEtMjAyMC1pcWUtZG9ubmVlcy1icnV0ZXMtZmVkLmNzdlwiXG5kb3dubG9hZC5maWxlKHVybCA9IGNhbnVybCwgXCJDYW5kYXRhLmNzdlwiKVxuQ2FuLkRhdGEgPC0gcmVhZF9jc3YoXCJDYW5zaXRlLmNzdlwiLCBjb2xfdHlwZXMgPSBjb2xzKEdVSURFTElORV9SRUZFUkVOQ0VfUkVDT01NQU5EQVRJT04gPSBjb2xfY2hhcmFjdGVyKCkpKSAlPiVcbiAgICAgICAgZmlsdGVyKFZBUklBQkxFX05BTUU9PVwiUEhPU1BIT1JVU1wiKSAlPiVcbiAgICAgICAgbXV0YXRlKERBVEU9ZG15KERBVEUpKSAlPiVcbiAgICAgICAgc2VsZWN0KERBVEUsIFZBTFVFX1ZBTEVVUiwgbGF0ID0gTEFUSVRVREUsIGxuZyA9IExPTkdJVFVERSkgJT4lXG4gICAgICAgIGZpbHRlcihEQVRFID4gZG15KDAxMDEyMDE3KSkgJT4lXG4gICAgICAgIGdyb3VwX2J5KGxhdCwgbG5nKSAlPiVcbiAgICAgICAgc3VtbWFyaXNlKEF2Z19Db24gPSBtZWFuKFZBTFVFX1ZBTEVVUikpICU+JVxuICAgICAgICBhcnJhbmdlKEF2Z19Db24pXG5gYGAifQ== -->
+<pre class="r"><code>canurl &lt;- &quot;https://www.canada.ca/content/dam/eccc/documents/csv/cesindicators/water-quality-canadian-rivers/2020/wqi-federal-raw-data-2020-iqe-donnees-brutes-fed.csv&quot;
+download.file(url = canurl, &quot;Candata.csv&quot;)
+Can.Data &lt;- read_csv(&quot;Cansite.csv&quot;, col_types = cols(GUIDELINE_REFERENCE_RECOMMANDATION = col_character())) %&gt;%
+        filter(VARIABLE_NAME==&quot;PHOSPHORUS&quot;) %&gt;%
+        mutate(DATE=dmy(DATE)) %&gt;%
+        select(DATE, VALUE_VALEUR, lat = LATITUDE, lng = LONGITUDE) %&gt;%
+        filter(DATE &gt; dmy(01012017)) %&gt;%
+        group_by(lat, lng) %&gt;%
+        summarise(Avg_Con = mean(VALUE_VALEUR)) %&gt;%
+        arrange(Avg_Con)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="european-datset" class="section level2">
+<h2>European datset</h2>
+<p>The european dataset comes from Waterbase. This data is open and easy to download from their website but is very large, so be careful with your available disk space.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZXVyb3VybCA8LSBcImh0dHBzOi8vY21zaGFyZS5lZWEuZXVyb3BhLmV1L3MvWGROYzlvRmVYeUVKa25OL2Rvd25sb2FkXCJcbmRvd25sb2FkLmZpbGUodXJsID0gZXVyb3VybCwgXCJldXJvZGF0YS56aXBcIiwgbW9kZT1cIndiXCIpXG51bnppcChcImV1cm9kYXRhLnppcFwiLCBleGRpciA9IFwiLlwiKVxuXG5ldXJvc2l0ZSA8LSByZWFkX2NzdihcIldhdGVyYmFzZV92MjAyMF8xX1NfV0lTRTZfU3BhdGlhbE9iamVjdF9EZXJpdmVkRGF0YS5jc3ZcIikgJT4lXG4gICAgICAgIHNlbGVjdChtb25pdG9yaW5nU2l0ZUlkZW50aWZpZXIsIGxhdCwgbG9uKVxuZXVyb2RhdGEgPC0gcmVhZF9jc3YoXCJXYXRlcmJhc2VfdjIwMjBfMV9UX1dJU0U2X0FnZ3JlZ2F0ZWREYXRhLmNzdlwiKSAlPiVcbiAgICAgICAgc2VsZWN0KG1vbml0b3JpbmdTaXRlSWRlbnRpZmllciwgcGFyYW0gPSBvYnNlcnZlZFByb3BlcnR5RGV0ZXJtaW5hbmRMYWJlbCwgeWVhciA9IHBoZW5vbWVub25UaW1lUmVmZXJlbmNlWWVhcixSZXN1bHQgPSByZXN1bHRNZWFuVmFsdWUgKSAlPiVcbiAgICAgICAgZmlsdGVyKHBhcmFtID09IFwiVG90YWwgcGhvc3Bob3J1c1wiKSAlPiVcbiAgICAgICAgZmlsdGVyKHllYXIgPT0gXCIyMDE3XCJ8IHllYXIgPT0gXCIyMDE4XCIgKSAlPiVcbiAgICAgICAgbGVmdF9qb2luKGV1cm9zaXRlKSAlPiVcbiAgICAgICAgYXJyYW5nZShSZXN1bHQpXG5gYGAifQ== -->
+<pre class="r"><code>eurourl &lt;- &quot;https://cmshare.eea.europa.eu/s/XdNc9oFeXyEJknN/download&quot;
+download.file(url = eurourl, &quot;eurodata.zip&quot;, mode=&quot;wb&quot;)
+unzip(&quot;eurodata.zip&quot;, exdir = &quot;.&quot;)
+
+eurosite &lt;- read_csv(&quot;Waterbase_v2020_1_S_WISE6_SpatialObject_DerivedData.csv&quot;) %&gt;%
+        select(monitoringSiteIdentifier, lat, lon)
+eurodata &lt;- read_csv(&quot;Waterbase_v2020_1_T_WISE6_AggregatedData.csv&quot;) %&gt;%
+        select(monitoringSiteIdentifier, param = observedPropertyDeterminandLabel, year = phenomenonTimeReferenceYear,Result = resultMeanValue ) %&gt;%
+        filter(param == &quot;Total phosphorus&quot;) %&gt;%
+        filter(year == &quot;2017&quot;| year == &quot;2018&quot; ) %&gt;%
+        left_join(eurosite) %&gt;%
+        arrange(Result)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="map-information" class="section level2">
+<h2>Map information</h2>
+<p>There are two maps used, a watercolour map from google and a map the world as an outline with the “worldHires” map. The google map does require the use of the google maps api which will require an acount an the use of the “register_google” function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3dvcmxkIDwtIGdldF9tYXAobG9jYXRpb24gPSBjKGxvbiA9IC00MiwgbGF0ICA9IDU0KSxcbiAgICAgICAgICAgICAgICAgIG1hcHR5cGUgPSBcIndhdGVyY29sb3JcIixcbiAgICAgICAgICAgICAgICAgIHpvb20gPSAyLFxuICAgICAgICAgICAgICAgICAgc291cmNlID0gXCJzdGFtZW5cIilcbndvcmxkIDwtIG1hcF9kYXRhKFwid29ybGRIaXJlc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>gworld &lt;- get_map(location = c(lon = -42, lat  = 54),
+                  maptype = &quot;watercolor&quot;,
+                  zoom = 2,
+                  source = &quot;stamen&quot;)
+world &lt;- map_data(&quot;worldHires&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="plotting" class="section level2">
+<h2>Plotting</h2>
+<p>The color ramp palette function is used to create a custom gradient in the plotted concentration colours. With that, all the data can be plotted on the maps.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sZnVuYzwtY29sb3JSYW1wUGFsZXR0ZShjKFwieWVsbG93XCIsXCJyZWRcIixcInNwcmluZ2dyZWVuXCIsXCJyb3lhbGJsdWVcIikpXG5ncGxvdCA8LSBnZ21hcChnd29ybGQsIGV4dGVudCA9IFwiZGV2aWNlXCIsIHBhZGRpbmcgPSAxKSArIFxuICAgICAgICBnZW9tX3BvbHlnb24oZGF0YSA9IHdvcmxkLCBhZXMoeD1sb25nLCB5ID0gbGF0LCBncm91cCA9IGdyb3VwKSxmaWxsID0gTkEsIGNvbG9yPVwiYmxhY2tcIikgKyBcbiAgICAgICAgZ2VvbV9wb2ludChkYXRhID0gVVNBLCBhZXMoeCA9bG5nLCB5ID0gbGF0LCBjb2xvciA9IFJlc3VsdCksIHNpemUgPSAyLCBhbHBoYSA9IDAuNSkgK1xuICAgICAgICBnZW9tX3BvaW50KGRhdGEgPSBDYW4uRGF0YSwgYWVzKHggPWxuZywgeSA9IGxhdCwgY29sb3IgPSBBdmdfQ29uKSwgc2l6ZSA9IDIsIGFscGhhID0gMC41KSArXG4gICAgICAgIGdlb21fcG9pbnQoZGF0YSA9IGV1cm9kYXRhLCBhZXMoeCA9bG9uLCB5ID0gbGF0LCBjb2xvciA9IFJlc3VsdCksIHNpemUgPSAyLCBhbHBoYSA9IDAuNSkgKyBcbiAgICAgICAgc2NhbGVfY29sb3JfZ3JhZGllbnRuKGNvbG91cnMgPSBjb2xmdW5jKDQpKSBcbmdwbG90XG5gYGAifQ== -->
+<pre class="r"><code>colfunc&lt;-colorRampPalette(c(&quot;yellow&quot;,&quot;red&quot;,&quot;springgreen&quot;,&quot;royalblue&quot;))
+gplot &lt;- ggmap(gworld, extent = &quot;device&quot;, padding = 1) + 
+        geom_polygon(data = world, aes(x=long, y = lat, group = group),fill = NA, color=&quot;black&quot;) + 
+        geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 2, alpha = 0.5) +
+        geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 2, alpha = 0.5) +
+        geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 2, alpha = 0.5) + 
+        scale_color_gradientn(colours = colfunc(4)) 
+gplot</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFydGljbGUgUGxvdHRpbmcgTm90ZWJvb2siDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCiMjIEludHJvZHVjdGlvbg0KDQpUaGlzIE5vdGVib29rIG91dGxpbmVzIHRoZSBjb2RlIHJlcXVpcmVkIHRvIGNyZWF0ZSB0aGUgcGxvdCBvZiBkaWZmZXJlbnQgc2FtcGxlcw0Kb2YgbnV0cmllbnRzIHRlc3RlZCBpbiB3YXRlciBhcm91bmQgdGhlIHdvcmxkLiBUaGlzIHBsb3Qgd2lsbCBiZSB1c2VkIGluIGFuIGFydGljbGUNCnRoYXQgd2lsbCBob3BlZnVsbHkgYmUgcHVibGlzaGVkIGluIHRoZSBDYW5hZGlhbiBKb3VybmFsIG9mIENoZW1pY2FsIEVuZ2luZWVyaW5nLiANCg0KVGhlIGZvbGxvd2luZyBjb2RlIGlzIHVzZWQgdG8gaW5zdGFsbCB0aGUgcmVxdWlyZWQgbGlicmFyaWVzLiANCmBgYHtyLCBJbml0aWFsfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KGRhdGFSZXRyaWV2YWwpDQpsaWJyYXJ5KGdnbWFwKQ0KbGlicmFyeShtYXBzKQ0KbGlicmFyeShtYXBkYXRhKQ0KbGlicmFyeShSQ29sb3JCcmV3ZXIpDQpsaWJyYXJ5KGx1YnJpZGF0ZSkNCmBgYA0KDQojIyBVU0EgZGF0YXNldA0KDQpUaGlzIG5leHQgY2h1bmsgb2YgY29kZSBpcyB1c2VzIHRoZSByZWFkV1FQZGF0YSBmdW5jdGlvbiBmcm9tIHRoZSBkYXRhUmV0cml2ZWFsIHBhY2thZ2UNCnRvIGRvd25sb2FkIGRhdGEgZnJvbSB0aGUgV2F0ZXIgUXVhbGl0eSBQb3J0YWwuIFRoZSBXYXRlciBRdWFsaXR5IFBvcnRhbCBpcyBhIGNvbGxlY3Rpb24NCm9mIHRocmVlIGRhdGFzZXRzIG9mIHdhdGVyIHF1YWxpdHkgc2FtcGxpbmcgYWNyb3NzIHRoZSBnbG9iZS4gDQoNClRoZSBwYXJhbWV0ZXJzIGFyZSBwYXNzZWQgdG8gdGhlIGZ1bmN0aW9uIHRvIGRlZmluZSB0aGUgc2NvcGUgZm9yIHRoZSBkYXRhIHRvIGNvbGxlY3Rpb24sDQpmb3IgdGhpcyBpbnN0YW5jZSBpdCBsaW1pdHMgdGhlIHdpbmRvdyBmb3Igd2hlbiB0aGUgc2FtcGxlIHdhcyBmaXJzdCBjb2xsZWN0ZWQgYW5kDQpsaW1pdHMgdGhlIGRhdGFiYXNlIHRvIHNvbGVseSB0aGUgY29uY2VudHJhdGlvbiBvZiB0b3RhbCBQaG9zcGhvcnVzLg0KDQpgYGB7ciwgZGF0YWdldH0NCndxcC5kYXRhIDwtIHJlYWRXUVBkYXRhKCdzdGFydERhdGVMbycgPSAiMjAxNy0wMS0wMSIsIA0KICAgICAgICAgICAgICAgICAgICAgICAgJ3N0YXJ0RGF0ZUhpJyA9ICIyMDE4LTEyLTMxIiwgDQogICAgICAgICAgICAgICAgICAgICAgICBjaGFyYWN0ZXJpc3RpY05hbWU9YygiUGhvc3Bob3J1cyIpKSAlPiUNCiAgICAgICAgZmlsdGVyKFJlc3VsdFNhbXBsZUZyYWN0aW9uVGV4dD09IlRvdGFsIikgJT4lDQogICAgICAgIG11dGF0ZShSZXN1bHQgPSBhcy5udW1lcmljKFJlc3VsdE1lYXN1cmVWYWx1ZSkpICU+JQ0KICAgICAgICBmaWx0ZXIoIWlzLm5hKFJlc3VsdCksDQogICAgICAgICAgICAgICBBY3Rpdml0eU1lZGlhTmFtZT09IldhdGVyIikNCmBgYA0KDQpUaGUgVVNBIGRhdGFzZXQgY29tZSBmcm9tIGEgd2lkZSBhcnJhbmdlIG9mIHNhbXBsaW5nIHN0YXRpb25zLCBgciBsZW5ndGgodW5pcXVlKHdxcC5kYXRhJE1vbml0b3JpbmdMb2NhdGlvbklkZW50aWZpZXIpKWAgc3RhdGlvbnMgaW4gdG90YWwuIA0KVGhlc2UgZGlmZmVyZW50IHN0YXRpb25zIG1lYXN1cmUgZGlmZmVyZW50IHVuaXRzIG9uIGNvbmNlbnRyYXRpb24gc28gdGhlIGRhdGEgbmVlZHMNCnRvIGJlIGNsZWFuZWQgYW5kIHRoZSB1bml0cyBjb252ZXJ0ZWQgdG8gbWcvTC4gDQpgYGB7ciwgVVNBX3VuaXRzfQ0KQ2FzZTEgPC0gd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PSJ1Zy9sInwgd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PSJ1ZyINCkNhc2UyIDwtIHdxcC5kYXRhJFJlc3VsdE1lYXN1cmUuTWVhc3VyZVVuaXRDb2RlPT0icHBtInwgd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PSJtZy9sIGFzIFAiDQpDYXNlMyA8LSB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09InBwYiINCkNhc2U0IDwtIHdxcC5kYXRhJFJlc3VsdE1lYXN1cmUuTWVhc3VyZVVuaXRDb2RlPT0ibWcva2ciDQpDYXNlNSA8LSB3cXAuZGF0YSRSZXN1bHRNZWFzdXJlLk1lYXN1cmVVbml0Q29kZT09IiUiDQoNCndxcC5kYXRhJFJlc3VsdFtDYXNlMXxDYXNlM10gPC0gd3FwLmRhdGEkUmVzdWx0W0Nhc2UxfENhc2UzXS8xMDAwDQp3cXAuZGF0YSRSZXN1bHRbQ2FzZTVdIDwtIHdxcC5kYXRhJFJlc3VsdFtDYXNlNV0qMTANCg0Kd3FwLmRhdGEkUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGVbQ2FzZTF8Q2FzZTJ8Q2FzZTN8Q2FzZTR8Q2FzZTVdIDwtICJtZy9sIg0Kd3FwLmRhdGEgPC0gd3FwLmRhdGEgJT4lIA0KICAgICAgICBmaWx0ZXIoUmVzdWx0TWVhc3VyZS5NZWFzdXJlVW5pdENvZGU9PSJtZy9sIikgJT4lDQogICAgICAgIGZpbHRlcihSZXN1bHQgPiAwKQ0KYGBgDQoNClRoZSBkYXRhIGNvbWVzIGZyb20gdGhlIHllYXJzIDIwMTctMjAxOCBzbyB0aGVyZSBhcmUgbXVsdGlwbGUgbWVhc3VyZW1lbnRzIGZyb20gdGhlIA0Kc2FtZSBzdGF0aW9ucy4gVGhlIGF2ZXJhZ2UgdmFsdWUgaXMgb2J0YWluZWQgYW5kIGFsbCBleHRyYSB1bm5lY2Vzc2FyeSBhdHRyaWJ1dGVzIA0KYXJlIGRyb3BwZWQuIA0KDQpgYGB7ciBVU0FfRHJvcH0NCndxcC5kYXRhIDwtIHdxcC5kYXRhICU+JQ0KICAgICAgICBzZWxlY3QoTW9uaXRvcmluZ0xvY2F0aW9uSWRlbnRpZmllciwgQ2hhcmFjdGVyaXN0aWNOYW1lLCBSZXN1bHQpICU+JQ0KICAgICAgICBncm91cF9ieShNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyLCBDaGFyYWN0ZXJpc3RpY05hbWUpICU+JQ0KICAgICAgICBzdW1tYXJpc2UoUmVzdWx0ID0gbWVhbihSZXN1bHQpLCAuZ3JvdXBzID0gImtlZXAiKQ0KYGBgDQoNCkFsbCBvZiB0aGUgZ2VvLXNwYWNpYWwgZGF0YSBmb3IgdGhlIFVTQSB0ZXN0aW5nIGxvY2F0aW9uIGFyZSBrZXB0IGluIGEgc2VwYXJhdGUgDQpkYXRhYmFzZSBzbyB0aGUgbGVmdCBtZXJnZSBpcyB1c2VkIHRvIGFkZCBsb25naXR1ZGUgYW5kIGxhdGl0dWRlIGRhdGEuIA0KYGBge3IgVVNBX2dlb30NCndxcC5zaXRlIDwtIHdoYXRXUVBzaXRlcyhzaXRlaWQ9d3FwLmRhdGEkTW9uaXRvcmluZ0xvY2F0aW9uSWRlbnRpZmllcikgJT4lDQogICAgICAgIHNlbGVjdChNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyLCBsbmcgPSBMb25naXR1ZGVNZWFzdXJlLA0KICAgICAgICAgICAgICAgbGF0ID0gTGF0aXR1ZGVNZWFzdXJlKQ0KVVNBIDwtIHdxcC5kYXRhICU+JSANCiAgICAgICAgbGVmdF9qb2luKHdxcC5zaXRlLCBieSA9ICJNb25pdG9yaW5nTG9jYXRpb25JZGVudGlmaWVyIikgJT4lDQogICAgICAgIGFycmFuZ2UoUmVzdWx0KQ0KYGBgDQoNCiMjIENhbmFkYSBkYXRhc2V0DQoNClRoZSBDYW5hZGlhbiBkYXRhc2V0IGlzIG11Y2ggZWFzaWVyIHRvIGhhbmRsZSBhbmQgY2FuIGJlIHNpbXBseSBkb3dubG9hZGVkIGZyb20gdGhlDQpjYW5hZGlhbiBvcGVuIGRhdGEgd2Vic2l0ZS4gVGhlcmUgaXMgYSBsaW1pdGF0aW9uIHRvIHRoZSBkYXRhIGluIHRoYXQgdGhlIGxhc3QgdXBkYXRlZCANCmRhdGEgaXMgZnJvbSAyMDE4LiBUaGlzIHdpbGwgYmUgdGhlIGxpbWl0YXRpb24gZm9yIGFsbCB0aGUgZGF0YSBhcyBhbGwgb3RoZXIgZGF0YXNldHMgDQphcmUgbW9yZSByZWNlbnQuIA0KDQpgYGB7ciBDYW59DQpjYW51cmwgPC0gImh0dHBzOi8vd3d3LmNhbmFkYS5jYS9jb250ZW50L2RhbS9lY2NjL2RvY3VtZW50cy9jc3YvY2VzaW5kaWNhdG9ycy93YXRlci1xdWFsaXR5LWNhbmFkaWFuLXJpdmVycy8yMDIwL3dxaS1mZWRlcmFsLXJhdy1kYXRhLTIwMjAtaXFlLWRvbm5lZXMtYnJ1dGVzLWZlZC5jc3YiDQpkb3dubG9hZC5maWxlKHVybCA9IGNhbnVybCwgIkNhbmRhdGEuY3N2IikNCkNhbi5EYXRhIDwtIHJlYWRfY3N2KCJDYW5zaXRlLmNzdiIsIGNvbF90eXBlcyA9IGNvbHMoR1VJREVMSU5FX1JFRkVSRU5DRV9SRUNPTU1BTkRBVElPTiA9IGNvbF9jaGFyYWN0ZXIoKSkpICU+JQ0KICAgICAgICBmaWx0ZXIoVkFSSUFCTEVfTkFNRT09IlBIT1NQSE9SVVMiKSAlPiUNCiAgICAgICAgbXV0YXRlKERBVEU9ZG15KERBVEUpKSAlPiUNCiAgICAgICAgc2VsZWN0KERBVEUsIFZBTFVFX1ZBTEVVUiwgbGF0ID0gTEFUSVRVREUsIGxuZyA9IExPTkdJVFVERSkgJT4lDQogICAgICAgIGZpbHRlcihEQVRFID4gZG15KDAxMDEyMDE3KSkgJT4lDQogICAgICAgIGdyb3VwX2J5KGxhdCwgbG5nKSAlPiUNCiAgICAgICAgc3VtbWFyaXNlKEF2Z19Db24gPSBtZWFuKFZBTFVFX1ZBTEVVUikpICU+JQ0KICAgICAgICBhcnJhbmdlKEF2Z19Db24pDQpgYGANCg0KIyMgRXVyb3BlYW4gZGF0c2V0DQoNClRoZSBldXJvcGVhbiBkYXRhc2V0IGNvbWVzIGZyb20gV2F0ZXJiYXNlLiBUaGlzIGRhdGEgaXMgb3BlbiBhbmQgZWFzeSB0byBkb3dubG9hZA0KZnJvbSB0aGVpciB3ZWJzaXRlIGJ1dCBpcyB2ZXJ5IGxhcmdlLCBzbyBiZSBjYXJlZnVsIHdpdGggeW91ciBhdmFpbGFibGUgZGlzayBzcGFjZS4gDQoNCmBgYHtyLCBldXJvfQ0KZXVyb3VybCA8LSAiaHR0cHM6Ly9jbXNoYXJlLmVlYS5ldXJvcGEuZXUvcy9YZE5jOW9GZVh5RUprbk4vZG93bmxvYWQiDQpkb3dubG9hZC5maWxlKHVybCA9IGV1cm91cmwsICJldXJvZGF0YS56aXAiLCBtb2RlPSJ3YiIpDQp1bnppcCgiZXVyb2RhdGEuemlwIiwgZXhkaXIgPSAiLiIpDQoNCmV1cm9zaXRlIDwtIHJlYWRfY3N2KCJXYXRlcmJhc2VfdjIwMjBfMV9TX1dJU0U2X1NwYXRpYWxPYmplY3RfRGVyaXZlZERhdGEuY3N2IikgJT4lDQogICAgICAgIHNlbGVjdChtb25pdG9yaW5nU2l0ZUlkZW50aWZpZXIsIGxhdCwgbG9uKQ0KZXVyb2RhdGEgPC0gcmVhZF9jc3YoIldhdGVyYmFzZV92MjAyMF8xX1RfV0lTRTZfQWdncmVnYXRlZERhdGEuY3N2IikgJT4lDQogICAgICAgIHNlbGVjdChtb25pdG9yaW5nU2l0ZUlkZW50aWZpZXIsIHBhcmFtID0gb2JzZXJ2ZWRQcm9wZXJ0eURldGVybWluYW5kTGFiZWwsIHllYXIgPSBwaGVub21lbm9uVGltZVJlZmVyZW5jZVllYXIsUmVzdWx0ID0gcmVzdWx0TWVhblZhbHVlICkgJT4lDQogICAgICAgIGZpbHRlcihwYXJhbSA9PSAiVG90YWwgcGhvc3Bob3J1cyIpICU+JQ0KICAgICAgICBmaWx0ZXIoeWVhciA9PSAiMjAxNyJ8IHllYXIgPT0gIjIwMTgiICkgJT4lDQogICAgICAgIGxlZnRfam9pbihldXJvc2l0ZSkgJT4lDQogICAgICAgIGFycmFuZ2UoUmVzdWx0KQ0KYGBgDQoNCiMjIE1hcCBpbmZvcm1hdGlvbg0KDQpUaGVyZSBhcmUgdHdvIG1hcHMgdXNlZCwgYSB3YXRlcmNvbG91ciBtYXAgZnJvbSBnb29nbGUgYW5kIGEgbWFwIHRoZSB3b3JsZCBhcyBhbiANCm91dGxpbmUgd2l0aCB0aGUgIndvcmxkSGlyZXMiIG1hcC4gVGhlIGdvb2dsZSBtYXAgZG9lcyByZXF1aXJlIHRoZSB1c2Ugb2YgdGhlIGdvb2dsZQ0KbWFwcyBhcGkgd2hpY2ggd2lsbCByZXF1aXJlIGFuIGFjb3VudCBhbiB0aGUgdXNlIG9mIHRoZSAicmVnaXN0ZXJfZ29vZ2xlIiBmdW5jdGlvbi4gDQpgYGB7ciBtYXBzfQ0KZ3dvcmxkIDwtIGdldF9tYXAobG9jYXRpb24gPSBjKGxvbiA9IC00MiwgbGF0ICA9IDU0KSwNCiAgICAgICAgICAgICAgICAgIG1hcHR5cGUgPSAid2F0ZXJjb2xvciIsDQogICAgICAgICAgICAgICAgICB6b29tID0gMiwNCiAgICAgICAgICAgICAgICAgIHNvdXJjZSA9ICJzdGFtZW4iKQ0Kd29ybGQgPC0gbWFwX2RhdGEoIndvcmxkSGlyZXMiKQ0KYGBgDQoNCiMjIFBsb3R0aW5nDQoNClRoZSBjb2xvciByYW1wIHBhbGV0dGUgZnVuY3Rpb24gaXMgdXNlZCB0byBjcmVhdGUgYSBjdXN0b20gZ3JhZGllbnQgaW4gdGhlIHBsb3R0ZWQNCmNvbmNlbnRyYXRpb24gY29sb3Vycy4gV2l0aCB0aGF0LCBhbGwgdGhlIGRhdGEgY2FuIGJlIHBsb3R0ZWQgb24gdGhlIG1hcHMuDQoNCmBgYHtyIHBsb3R9DQpjb2xmdW5jPC1jb2xvclJhbXBQYWxldHRlKGMoInllbGxvdyIsInJlZCIsInNwcmluZ2dyZWVuIiwicm95YWxibHVlIikpDQpncGxvdCA8LSBnZ21hcChnd29ybGQsIGV4dGVudCA9ICJkZXZpY2UiLCBwYWRkaW5nID0gMSkgKyANCiAgICAgICAgZ2VvbV9wb2x5Z29uKGRhdGEgPSB3b3JsZCwgYWVzKHg9bG9uZywgeSA9IGxhdCwgZ3JvdXAgPSBncm91cCksZmlsbCA9IE5BLCBjb2xvcj0iYmxhY2siKSArIA0KICAgICAgICBnZW9tX3BvaW50KGRhdGEgPSBVU0EsIGFlcyh4ID1sbmcsIHkgPSBsYXQsIGNvbG9yID0gUmVzdWx0KSwgc2l6ZSA9IDIsIGFscGhhID0gMC41KSArDQogICAgICAgIGdlb21fcG9pbnQoZGF0YSA9IENhbi5EYXRhLCBhZXMoeCA9bG5nLCB5ID0gbGF0LCBjb2xvciA9IEF2Z19Db24pLCBzaXplID0gMiwgYWxwaGEgPSAwLjUpICsNCiAgICAgICAgZ2VvbV9wb2ludChkYXRhID0gZXVyb2RhdGEsIGFlcyh4ID1sb24sIHkgPSBsYXQsIGNvbG9yID0gUmVzdWx0KSwgc2l6ZSA9IDIsIGFscGhhID0gMC41KSArIA0KICAgICAgICBzY2FsZV9jb2xvcl9ncmFkaWVudG4oY29sb3VycyA9IGNvbGZ1bmMoNCkpIA0KZ3Bsb3QNCmBgYA0K</div>
 
 
 
@@ -1826,7 +1944,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

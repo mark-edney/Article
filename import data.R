@@ -3,11 +3,8 @@ library(dataRetrieval)
 library(ggmap)
 library(maps)
 library(mapdata)
-library(mapsapi)
 library(RColorBrewer)
 library(lubridate)
-
-#register_google(key="AIzaSyDUDSTklS9m7VW8j5Hotu_mZxe-a4j9CP0", write = TRUE)
 
 wqp.data <- readWQPdata('startDateLo' = "2017-01-01", 
                         'startDateHi' = "2018-12-31", 
@@ -33,7 +30,7 @@ wqp.data$Result[Case5] <- wqp.data$Result[Case5]*10
 wqp.data$ResultMeasure.MeasureUnitCode[Case1|Case2|Case3|Case4|Case5] <- "mg/l"
 wqp.data <- wqp.data %>% 
         filter(ResultMeasure.MeasureUnitCode=="mg/l") %>%
-        filter(Result > 0, Result<30)
+        filter(Result > 0)
 
 wqp.data <- wqp.data %>%
         select(MonitoringLocationIdentifier, CharacteristicName, Result) %>%
@@ -44,11 +41,6 @@ wqp.site <- whatWQPsites(siteid=wqp.data$MonitoringLocationIdentifier) %>%
         select(MonitoringLocationIdentifier, lng = LongitudeMeasure,
                lat = LatitudeMeasure)
 
-gworld <- get_map(location = c(lon = -42, lat  = 54),
-                  maptype = "watercolor",
-                  zoom = 2,
-                  source = "stamen")
-world <- map_data("worldHires")
 USA <- wqp.data %>% 
         left_join(wqp.site, by = "MonitoringLocationIdentifier") %>%
         arrange(Result)
@@ -86,13 +78,20 @@ Cluster <- DF %>% ungroup %>%
 
 ClusterTbl <- as.data.frame(Cluster$centers)
 
+Data <- data.frame(lon = c(USA$lng, Can.Data$lng, eurodata$lon),
+                   lat = c(USA$lat, Can.Data$lat, eurodata$lat))
+world_box <- make_bbox(lat=lat, lon = lon, data = Data)
+gworld <- get_map(location = c(lon = -42, lat  = 54),
+                  maptype = "watercolor",
+                  zoom = 1,
+                  source = "stamen")
+world <- map_data("worldHires")
+
 colfunc<-colorRampPalette(c("yellow","red","springgreen","royalblue"))
-gplot <- ggmap(gworld) + 
+gplot <- ggmap(gworld, extent = "device", padding = 1) + 
         geom_polygon(data = world, aes(x=long, y = lat, group = group),fill = NA, color="black") + 
         geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 2, alpha = 0.5) +
         geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 2, alpha = 0.5) +
         geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 2, alpha = 0.5) + 
-        scale_color_gradientn(colours = colfunc(4),
-                              trans ="log10") 
+        scale_color_gradientn(colours = colfunc(4))
 gplot
-
