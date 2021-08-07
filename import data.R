@@ -41,7 +41,7 @@ Can.Data <- read_csv("Candata.csv", col_types = cols(GUIDELINE_REFERENCE_RECOMMA
         filter(VARIABLE_NAME=="PHOSPHORUS") %>%
         mutate(DATE=dmy(DATE)) %>%
         select(DATE, VALUE_VALEUR, lat = LATITUDE, lng = LONGITUDE) %>%
-        filter(DATE > dmy(01012017), DATE < dmy(3121018)) %>%
+        filter(DATE > dmy(01012017)) %>%
         group_by(lat, lng) %>%
         summarise(Avg_Con = mean(VALUE_VALEUR)) %>%
         arrange(Avg_Con)
@@ -66,13 +66,14 @@ world_box <- make_bbox(lat=lat, lon = lon, data = Data)
 gworld <- get_stamenmap(bbox = world_box,zoom = 4, maptype = "terrain-background")
 
 colfunc<-colorRampPalette(c("yellow","red","springgreen","royalblue"))
-gplot <- ggmap(gworld, extent = "device", padding = 0) +
+ggmap(gworld, extent = "device", padding = 0) +
         geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 2, alpha = 0.5) +
         geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 2, alpha = 0.5) +
         geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 2, alpha = 0.5) + 
-        scale_color_gradientn(colours = colfunc(4), name= "Total Phophorus \n Concentration (mg/L) \n log10",
+        scale_color_gradientn(colours = colfunc(4), name= "Total Phophorus \n Concentration (mg/L)", 
                               trans = "log10") +
         theme_map() +
-        theme(legend.background = element_blank())
-gplot
+        theme(legend.background = element_blank()) +
+        labs(caption = "Average measurements from 2017-2018")
 
+ggsave("Map.png", height =3.5)
