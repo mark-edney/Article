@@ -130,13 +130,16 @@ is of the log10 of the concntration as there are some values that are much highe
 average. 
 
 ```{r plot, warning=FALSE, message=FALSE}
-colfunc<-colorRampPalette(c("yellow","red","springgreen","royalblue"))
+colfunc<-colorRampPalette(c("white", "blue","red", "black"))
 ggmap(gworld, extent = "device", padding = 0) +
-  geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 2, alpha = 0.5) +
-  geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 2, alpha = 0.5) +
-  geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 2, alpha = 0.5) + 
+  geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 1.5, alpha = 0.5) +
+  geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 1.5, alpha = 0.5) +
+  geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 1.5, alpha = 0.5) + 
   scale_color_gradientn(colours = colfunc(4), name= "Total Phophorus \n Concentration (mg/L)", 
                         trans = "log10") +
   theme_map() +
-  theme(legend.background = element_blank())
+  theme(legend.background = element_blank()) + 
+  labs(caption = "Average measurements from 2017-2018")
+
+ggsave("Map.png", height =3.5)
 ```
