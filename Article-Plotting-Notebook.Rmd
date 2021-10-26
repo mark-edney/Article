@@ -20,6 +20,7 @@ library(mapdata)
 library(RColorBrewer)
 library(lubridate)
 library(ggthemes)
+library(readxl)
 ```
 
 ## USA dataset
@@ -109,6 +110,22 @@ eurodata <- read_csv("Waterbase_v2020_1_T_WISE6_AggregatedData.csv") %>%
         filter(!is.na(lat), !is.na(lon)) %>%
         arrange(Result)
 ```
+## GEM datset
+
+
+```{r, gem, warning=FALSE, message=FALSE}
+gemsite <- read_excel("GEMS-Water_data_request.xls")
+
+gemdata <- read_csv2("Total_Phosphorus.csv",col_types = cols("Sample Date"=col_date())) %>%
+        select("GEMS Station Number", "Sample Date", "Value")
+gemdata$Value <- as.numeric(gemdata$Value)      
+gemdata <- gemdata %>% filter(`Sample Date` > ymd("2017-01-01")) %>%
+        left_join(gemsite %>% select("GEMS Station Number", "Longitude", "Latitude")) %>%
+        rename("lng"= "Longitude", "lat" = "Latitude") %>%
+        group_by(lng, lat) %>%
+        summarise(Result = mean(Value)) %>%
+        arrange(Result)
+```
 
 ## Map information
 
@@ -116,17 +133,17 @@ The map data is downloaded with the get_stamenmap function. The map is centered
 around the extreme values of the geo-spacial data. 
 
 ```{r maps, warning=FALSE, message=FALSE}
-Data <- data.frame(lon = c(USA$lng, Can.Data$lng, eurodata$lon),
-                   lat = c(USA$lat, Can.Data$lat, eurodata$lat))
+Data <- data.frame(lon = c(USA$lng, Can.Data$lng, eurodata$lon, gemdata$lng),
+                   lat = c(USA$lat, Can.Data$lat, eurodata$lat, gemdata$lat))
 world_box <- make_bbox(lat=lat, lon = lon, data = Data)
-gworld <- get_stamenmap(bbox = world_box,zoom = 4, maptype = "terrain-background")
+gworld <- get_stamenmap(bbox = world_box,zoom = 5, maptype = "terrain-background")
 ```
 
 ## Plotting
 
 The color ramp palette function is used to create a custom gradient in the plotted
 concentration colours. With that, all the data can be plotted on the maps. The plot
-is of the log10 of the concntration as there are some values that are much higher than 
+is of the log10 of the concentration as there are some values that are much higher than 
 average. 
 
 ```{r plot, warning=FALSE, message=FALSE}
@@ -134,12 +151,12 @@ colfunc<-colorRampPalette(c("white", "blue","red", "black"))
 ggmap(gworld, extent = "device", padding = 0) +
   geom_point(data = USA, aes(x =lng, y = lat, color = Result), size = 1.5, alpha = 0.5) +
   geom_point(data = Can.Data, aes(x =lng, y = lat, color = Avg_Con), size = 1.5, alpha = 0.5) +
-  geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 1.5, alpha = 0.5) + 
-  scale_color_gradientn(colours = colfunc(4), name= "Total Phophorus \n Concentration (mg/L)", 
-                        trans = "log10") +
+  geom_point(data = eurodata, aes(x =lon, y = lat, color = Result), size = 1.5, alpha = 0.5) +
+  geom_point(data = gemdata, aes(x =lng, y = lat, color = Result), size = 1.5, alpha = 0.5) +
+  scale_color_gradientn(colours = colfunc(4), trans = "log10") +
   theme_map() +
   theme(legend.background = element_blank()) + 
   labs(caption = "Average measurements from 2017-2018")
 
-ggsave("Map.png", height =3.5)
+ggsave("Map.png")
 ```
